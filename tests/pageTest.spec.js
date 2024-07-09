@@ -7,7 +7,8 @@ test.describe('Home page test',() =>
     let page;
     let homePage;
 
-    test.beforeAll(async ()=>{
+    test.beforeAll(async ()=>
+        {
         browser = await chromium.launch();
         page = await browser.newPage();
         homePage = new SignupPage(page);
@@ -22,16 +23,11 @@ test.describe('Home page test',() =>
     })
 
 
-test('TC1',async({page}) =>
+test.only('TC1',async({page}) =>
 {
-
-
 const Signup = new SignupPage(page)
 await Signup.gotoSignUpPage()
 await Signup.signup('jisaj','jissa.joy@kjr.com.au')
-
-
-
-
 });
-});
+
+})
