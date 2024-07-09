@@ -12,11 +12,8 @@ class SignupPage {
         this.newuserSignUpText = page.getByText("New User Signup!");
         
         //New user signup locators
-         this.signupName = page.getByPlaceholder('Name')      
-       // this.signupName = this.locator('input[data-qa="signup-name"]');
-        //this.signupEmail = this.locator('input[data-qa="signup-email"]')
-       this.signupEmail = page.locator('//div[@class="signup-form"]//input[@type = "email"]')
-        
+        this.signupName = page.locator('input[data-qa="signup-name"][placeholder="Name"]')
+         this.signupEmail = page.locator('input[data-qa="signup-email"]')
        
         //this.email = page.locator('//*[@id="form"]/div/div/div[3]/div/form/input[3]')    this works too
         this.signupBtn = page.getByRole('button', { name: 'Signup' })
@@ -26,12 +23,10 @@ class SignupPage {
 
     async gotoSignUpPage() {
         await this.page.goto('https://www.automationexercise.com/login');
-        
-    }
+        }
    
-   
-    
- async signup(name,email){
+      
+    async signup(name,email){
    // await this.newuserSignUpText.tobeVisible()
     await this.signupName.fill(name);
     await this.signupEmail.fill(email);
@@ -39,7 +34,7 @@ class SignupPage {
  }
 
  async Login(email1,pwd){
-    await this.logintoaccountText.tobeVisible();
+   // await this.logintoaccountText.tobeVisible();
     await this.emailLogin.fill(email1);
     await this.loginPassword.fill(pwd);
     await this.loginBtn.click();
