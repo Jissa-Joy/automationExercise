@@ -1,3 +1,20 @@
 {
-    ""
+    "name":"jj",
+    "email":["jissa.joy1@kjr.com.au","jissa.joy@kjr.com"],
+    "password":"test123",
+    "fname":"jisa",
+    "lname":"j",
+    "address" :
+                 {"street":"collins",
+                  "country":["India","United States","Canada","Australia","Israel","New Zealand"],
+                   "state":["victoria","nsw","wa","KA"],
+                  "city":["melbourne","sydney","perth","geelong","blr"],
+                  "zip":["3000","3001","606060"]
+                },
+    "mobile":"0400000000",
+    "day":["1","2","3","4","5"],
+    "month":["January","February","March"],
+    "year":["1980","1981","1983","1984"]
+
 }
+

@@ -2,19 +2,20 @@
 /*RECORDED SCRIPT*/
 
 import { test, expect } from '@playwright/test';
+const testdata = JSON.parse(JSON.stringify("./testdata.json"))
 
 test('test', async ({ page }) => {
   await page.goto('https://www.automationexercise.com/');
   await page.getByRole('link', { name: ' Signup / Login' }).click();
   //page.locator('//*[@id="form"]/div/div/div[3]/div/form/input[3]')  //input[@placeholder='Name']
   //await page.locator('form').filter({ hasText: 'Login' }).getByPlaceholder('Email Address').click();//*[@id="form"]/div/div/div[3]/div/form/input[2]
-  await page.getByPlaceholder('Name').fill('jj')
+  await page.getByPlaceholder('Name').fill(testdata.name)
   await page.locator('//*[@id="form"]/div/div/div[3]/div/form/input[3]').fill('testaccessibility2024@gmail.com')
   await page.getByRole('button', { name: 'Signup' }).click()
 
   await expect(page.getByRole('link', { name: ' Home' })).toBeVisible();
   //await page.getByRole('textbox', {name:password}).fill('test123')
-  await page.locator('//*[@id="password"]').fill('test123')
+  await page.locator('//*[@id="password"]').fill(testdata.password)
  
  // await expect(page.getByText('Logged in as jisa')).toBeVisible();
 await page.locator('#days').selectOption({label:'2'})
