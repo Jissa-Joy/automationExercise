@@ -18,10 +18,10 @@ class LoginPage {
 
     }
 
-    async gotoLoginPage() {
+   /* async gotoLoginPage() {
         await this.page.goto('https://www.automationexercise.com/login');
 
-    }
+    }*/
 
     async Login(email1, pwd) {
         // await this.logintoaccountText.tobeVisible();

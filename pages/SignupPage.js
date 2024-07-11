@@ -1,8 +1,6 @@
 const { expect, default: test } = require("@playwright/test");
 const testdata = require('../testdata.json')
-//const testdata1 = JSON.parse(testdata)
-//console.log(testdata1)
-
+const dddata = require('../dropdowndata.json')
 
 exports.SignupPage =
   class SignupPage {
@@ -10,19 +8,21 @@ exports.SignupPage =
     constructor(page) {
       this.page = page;
       //Login to account locators and label locators
-    
+
       this.homeLabel = page.locator('.fa.fa-home');
       this.newUserLabel = page.locator("//h2[normalize-space()='New User Signup!']")
       this.emailLogin = page.locator('input[data-qa="login-email"]')
       this.loginPassword = page.locator('input[data-qa="login-password"]');
       this.loginBtn = page.getByRole('button', { name: 'Login' })
-      
+
 
       //New user signup locators
       this.signupName = page.locator('input[data-qa="signup-name"][placeholder="Name"]')
       this.signupEmail = page.locator('input[data-qa="signup-email"]')
       this.signupBtn = page.getByRole('button', { name: 'Signup' })
-      this.enterDetailsLabel = page.locator('.title.text-center')
+      //this.enterDetailsLabel = page.locator('h2:has-text("Enter Account Information")')
+      this.enterDetailsLabel = page.locator('//h2[contains(text(), "Enter Account Information")]')
+
 
       this.regPassword = page.locator('#password')
       this.day = page.locator('#days')
@@ -47,12 +47,12 @@ exports.SignupPage =
       this.loggedUser = page.locator('.fa.fa-user')
       //xpath
       //p[normalize-space()='Your email or password is incorrect!']
-       
+
       this.delContinueBtn = page.locator("//a[@class='btn btn-primary']")
     }
-    async gotoSignUpPage() {
+   /* async gotoSignUpPage() {
       await this.page.goto('https://www.automationexercise.com/login');
-    }
+    }*/
 
 
     async signup(name, email) {
@@ -62,13 +62,13 @@ exports.SignupPage =
       await this.signupBtn.click();
       await this.regPassword.fill(testdata.password);
       // await this.day.fill(testdata.day)
-
+ //await this.month.fill(dddata.)
       //await this.day.selectOption({label:'2'})
       // await this.month.fill(testdata.month[2])
       await this.fname.fill(testdata.fname)
       await this.lname.fill(testdata.lname)
       await this.address1.fill(testdata.address.street)
-      //  await this.country.fill(testdata.address.country[3])
+     //   await this.country.fill(testdata.address.country[3])
       await this.state.fill(testdata.address.state[2])
       await this.city.fill(testdata.address.city[0])
       await this.zip.fill(testdata.address.zip[1])
@@ -76,42 +76,43 @@ exports.SignupPage =
       await this.createAccountBtn.click();
       await this.continueBtn.click();
       await this.deleteBtn.click();
-       await this.delContinueBtn.click();
+      await this.delContinueBtn.click();
     }
- //verify homepage is visible
-   async isReady() {
-      return expect(this.homeLabel).toBeVisible();
+    //verify homepage is visible
+    async isReady() {
+      await expect(this.homeLabel).toBeVisible();
+     // return expect(this.homeLabel).toBeVisible();
     }
-//verify newUser signup visible
-async newUser() {
-  // await expect(this.accountCreatedLabel).toBeVisible();
-  return expect(this.newUserLabel).toBeVisible()
- }
+    //verify newUser signup visible
+    async newUser() {
+      
+      await expect(this.newUserLabel).toBeVisible()
+    }
 
- async enterDetails() {
-  // await expect(this.accountCreatedLabel).toBeVisible();
-  return expect(this.enterDetailsLabel).toBeVisible()
- }
-   /* async accCreated() {
-      await expect(this.accountCreatedLabel).toBeVisible();
-     //return expect(this.accountCreatedLabel).toBeVisible()
-    }*/
+    async enterDetails() {
+       await expect(this.enterDetailsLabel).toBeVisible();
+   
+    }
+    /* async accCreated() {
+       await expect(this.accountCreatedLabel).toBeVisible();
+      //return expect(this.accountCreatedLabel).toBeVisible()
+     }*/
 
-   /* async verifyNewuser()
-    {
-      //await expect(this.newuserSignUpText).toBeVisible();
-      return expect(this.newuserSignUpText).toBeVisible();
-    }*/
-    async verifyLoggeduser()
-    {
-     // await expect(this.newuserSignUpText).toBeVisible();
-      return expect(this.loggedUser).toBeVisible();
+    /* async verifyNewuser()
+     {
+       //await expect(this.newuserSignUpText).toBeVisible();
+       return expect(this.newuserSignUpText).toBeVisible();
+     }*/
+    async verifyLoggeduser() {
+      // await expect(this.newuserSignUpText).toBeVisible();
+ await expect(this.loggedUser).toBeVisible();
     }
 
     async isDeleted() {
-      return expect(this.deletedLabel).toBeVisible();
+      await expect(this.deletedLabel).toBeVisible();
+      //return expect(this.deletedLabel).toBeVisible();
     }
-   
+
   }
 
 /* this.title= page.getByLabel('Mrs.')
