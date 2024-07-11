@@ -1,5 +1,5 @@
-import { expect } from '@playwright/test';
-//import { test } from '../utils/fixtures.js'
+const { test, expect, chromium } = require('@playwright/test');
+//const { test,expect } = require('../utils.fixtures.js')
 const {SignupPage} = require('../pages/SignupPage')
 
 const testdata = require('../testdata.json');  
@@ -8,7 +8,7 @@ const { LoginPage } = require('../pages/LoginPage');
 
 //import testdata from '../testdata.json' --- latest format
 
-/*test.describe('Home page test',() =>
+test.describe('Home page test',() =>
 {
     let browser;
     let page;
@@ -20,17 +20,12 @@ const { LoginPage } = require('../pages/LoginPage');
         page = await browser.newPage();
         homePage = new SignupPage(page);
 
-    });*/
-   test.beforeEach(async ({page}) =>            
+    });
+
+    test.beforeEach(async ({page}) =>
     {
         await page.goto('https://automationexercise.com/login')
     })
-
-      /*  test.beforeEach(async ({ signupPage, loginpage }) => {
-            await signupPage.gotoSignUpPage();
-            await loginpage.Login();
-          });*/
-
 
     test.afterAll(async()=> {
 
@@ -56,7 +51,7 @@ await Signup.signup(testdata.name,testdata.email[1]);
 
 });
 
-test.only('LoginTest TC2',async({page}) =>
+test('LoginTest TC2',async({page}) =>
 {
   const Loginuser = new LoginPage(page)
   //await Loginuser.gotoLoginPage();
